@@ -1,0 +1,23 @@
+[package]
+name = "dnspir-pir"
+description = "BFV-based two-level PIR engine underlying the DNSPIR protocol"
+version.workspace = true
+edition.workspace = true
+
+[lib]
+name = "pir"
+
+[dependencies]
+bytemuck.workspace = true
+feanor-math.workspace = true
+memmap2.workspace = true
+rand.workspace = true
+rand_distr.workspace = true
+rayon.workspace = true
+take_mut.workspace = true
+tracing.workspace = true
+
+[features]
+# Replace the AVX-512 intrinsics in `avx.rs` by a portable scalar emulation,
+# so the engine can be built and tested on hosts without AVX-512.
+emulate_avx512 = []

@@ -1,0 +1,22 @@
+[package]
+name = "dns-over-pir"
+description = "Proof-of-concept private DNS resolver and authoritative server on top of dnspir-pir"
+version.workspace = true
+edition.workspace = true
+
+[[bin]]
+name = "dns-over-pir"
+path = "src/main.rs"
+
+[dependencies]
+dnspir-pir.workspace = true
+feanor-math.workspace = true
+flate2.workspace = true
+memmap2.workspace = true
+rand.workspace = true
+tracing.workspace = true
+tracing-chrome.workspace = true
+tracing-subscriber.workspace = true
+
+[features]
+emulate_avx512 = ["dnspir-pir/emulate_avx512"]

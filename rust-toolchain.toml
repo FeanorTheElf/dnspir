@@ -1,0 +1,12 @@
+[toolchain]
+# Pinned because:
+#   * crates/pir uses a handful of nightly-only language features
+#     (see the `#![feature(...)]` block in crates/pir/src/lib.rs), and the
+#     workspace manifest uses the unstable `profile-rustflags` cargo
+#     feature.
+#   * feanor-math 3.5.18 triggers a typecheck regression on nightlies
+#     older than ~2026-04. The release pinned below is known-good.
+# Bump together when an upstream change forces it; otherwise leave alone.
+channel = "nightly-2026-05-14"
+components = ["rustfmt", "clippy"]
+profile = "minimal"

@@ -1,0 +1,40 @@
+cargo-features = ["profile-rustflags"]
+
+[workspace]
+resolver = "3"
+members = ["crates/pir", "crates/dns-over-pir"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+
+[workspace.dependencies]
+dnspir-pir = { path = "crates/pir" }
+bytemuck = { version = "1", features = ["derive"] }
+feanor-math = "3.5.18"
+flate2 = "1.0"
+memmap2 = "0.9.10"
+rand = "0.8.5"
+rand_distr = "0.4.3"
+rayon = "1.10.0"
+take_mut = "0.2.2"
+tracing = { version = "0.1.41", features = ["max_level_off"] }
+tracing-chrome = "0.7.2"
+tracing-subscriber = "0.3.20"
+
+[profile.release]
+lto = "fat"
+opt-level = 3
+panic = "abort"
+codegen-units = 1
+rustflags = ["-Ctarget-cpu=native"]
+
+[profile.profiling]
+inherits = "bench"
+debug = true
+lto = "fat"
+opt-level = 3
+panic = "abort"
+codegen-units = 1
+rustflags = ["-Ctarget-cpu=native"]
